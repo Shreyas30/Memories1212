@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <title>Memories</title>
+    <style>
+        #image {
+            height: 30em;
+            width: 60em;
+            object-fit: cover;
+            margin: auto;
+        }
+
+        .navbar,
+        .add-secction .card {
+            /* background-image: linear-gradient(var(--bs-purple), var(--bs-info)); */
+            background-image: linear-gradient(to bottom right, var(--bs-primary), var(--bs-info));
+            color: white;
+            padding: 0;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+        }
+
+        main .container{
+            min-height: 85vh;
+        }
+
+        .modal .close {
+            font-size: 1.5rem;
+            outline: none;
+            border: 0;
+            background: white;
+        }
+
+        .modal p {
+            font-size: 0.8rem;
+        }
+
+        .modal .link {
+            text-decoration: underline;
+            color: #2626ad;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+<header class="fixed-top">
+        <nav class="navbar navbar-dark bg-info">
+            <div class="container-fluid">
+
+                <span class="navbar-brand mb-0 h1">
+                    <img src="icon.png" style="margin-bottom: 0.2rem;" alt="" srcset="" height="30" width="30"> <a
+                        href="index.html"> <span class="fs-2"> Memories </a></span></span>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+   
+    <main style="margin-top:4rem;">
+        <div class="container my-5">
+            <div class="row g-3">
+               <h1 id="title" class="text-center"></h1>
+               <img id="image" class="mt-2"src="uploads" alt="content-img">
+                <div class="desc text-center" id="desc" ></div> 
+            </div>
+        </div>
+    </main>
+    <footer class="p-2 bg-dark text-white text-center">
+        All rights Reserved &copy; 2021
+    </footer>
+
+    <script>
+        const getPost = async () => {
+
+            const id = location.search.substring(4);
+            try{
+                const response = await fetch(`https://memories1212.herokuapp.com/posts/${id}`);
+                const data = await response.json();
+                console.log(data);
+
+                document.getElementById("title").innerText = data.title;
+                document.getElementById("desc").innerText = data.description;
+                document.getElementById("image").src = data.image;
+
+            }catch(e){
+                console.log(e);
+            }
+        }
+
+        getPost();
+    </script>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
