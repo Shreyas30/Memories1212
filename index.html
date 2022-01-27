@@ -188,7 +188,6 @@
             var fileInput = document.getElementById('image');
             var reader = new FileReader();
             reader.readAsDataURL(fileInput.files[0]);
-            console.log("Hello2");
             reader.onload = async function () {
                 //console.log(reader.result);//base64encoded string
                 try {
@@ -201,17 +200,14 @@
                             image: reader.result
                         }),
                     });
-                    console.log("Hello3");
                     console.log(response);
                     //window.location.replace("/")
 
                 } catch (e) {
-                    console.log("Hello4");
                     console.log(e);
                 }
             };
             reader.onerror = function (error) {
-                console.log("Hello5");
                 console.log('Error: ', error);
             };
         })
